@@ -1,6 +1,7 @@
 import pandas as pd
-from utils_datasets import get_dataset
 import yaml
+
+from utils_datasets import get_dataset
 
 with open('config.yml') as file:
     config = yaml.load(file, Loader=yaml.FullLoader)
@@ -60,8 +61,8 @@ test = pd.concat(datasets, ignore_index=True)
 
 print("Testing dataset is created")
 
-train.to_csv(SELECTED_DATASET + '_train.csv', index = False)
-test.to_csv(SELECTED_DATASET + '_test.csv', index = False)
+train.to_csv(SELECTED_DATASET + '_train.csv', index=False)
+test.to_csv(SELECTED_DATASET + '_test.csv', index=False)
 
 print('Training dataset is saved into ' + SELECTED_DATASET + '_train.csv')
 print('Testing dataset is saved into ' + SELECTED_DATASET + '_test.csv')

@@ -56,18 +56,23 @@ if SELECTED_MODEL != 'XGBoost':
     if SELECTED_MODEL == 'LogisticRegression':
         print("Training logistic regression...")
         from sklearn.linear_model import LogisticRegression
+
         if SELECTED_DATASET == 'dataset1':
             model = LogisticRegression(penalty='l1', C=1.0, class_weight=None)
         elif SELECTED_DATASET == 'dataset2':
-            model = LogisticRegression(penalty='l2', C=7.742637, class_weight=None)
+            model = LogisticRegression(penalty='l2', C=7.742637,
+                                       class_weight=None)
     elif SELECTED_MODEL == 'RandomForest':
         print("Training random forest classifier...")
         from sklearn.ensemble import RandomForestClassifier
+
         if SELECTED_DATASET == 'dataset1':
-            model = RandomForestClassifier(n_estimators=500, max_features='sqrt', max_depth=3, random_state=42)
+            model = RandomForestClassifier(n_estimators=500,
+                                           max_features='sqrt', max_depth=3,
+                                           random_state=42)
         elif SELECTED_DATASET == 'dataset2':
             model = RandomForestClassifier(n_estimators=100, max_features=None,
-                                   max_depth=2)
+                                           max_depth=2)
 
     model.fit(X_train, y_train)
     print("Predicting for testing dataset...")
@@ -75,6 +80,7 @@ if SELECTED_MODEL != 'XGBoost':
 
 elif SELECTED_MODEL == 'XGBoost':
     import xgboost as xgb
+
     dtrain = xgb.DMatrix(X_train, label=y_train)
     dtest = xgb.DMatrix(X_test, label=y_test)
 
@@ -92,7 +98,6 @@ elif SELECTED_MODEL == 'XGBoost':
                     verbose_eval=False)
 
     y_prob = bst.predict(dtest)
-
 
 TEST_ALIGNMENTS = config[SELECTED_DATASET]['TEST_ALIGNMENTS']
 
@@ -127,17 +132,23 @@ for alignment in TEST_ALIGNMENTS:
         elif SELECTED_DATASET == 'dataset2':
             onto_format = 'owl'
 
-        pred_mappings = test[(test['Ontology1'] == f"{SELECTED_DATASET}/ontologies/{ont1}.{onto_format}") &
-                             (test['Ontology2'] == f"{SELECTED_DATASET}/ontologies/{ont2}.{onto_format}") &
+        pred_mappings = test[(test[
+                                  'Ontology1'] == f"{SELECTED_DATASET}/ontologies/{ont1}.{onto_format}") &
+                             (test[
+                                  'Ontology2'] == f"{SELECTED_DATASET}/ontologies/{ont2}.{onto_format}") &
                              (test['Predict'] == 1)]
 
-        true_mappings = test[(test['Ontology1'] == f"{SELECTED_DATASET}/ontologies/{ont1}.{onto_format}") &
-                             (test['Ontology2'] == f"{SELECTED_DATASET}/ontologies/{ont2}.{onto_format}") &
+        true_mappings = test[(test[
+                                  'Ontology1'] == f"{SELECTED_DATASET}/ontologies/{ont1}.{onto_format}") &
+                             (test[
+                                  'Ontology2'] == f"{SELECTED_DATASET}/ontologies/{ont2}.{onto_format}") &
                              (test['Match'] == 1)]
 
         correct_mappings = test[
-            (test['Ontology1'] == f"{SELECTED_DATASET}/ontologies/{ont1}.{onto_format}") &
-            (test['Ontology2'] == f"{SELECTED_DATASET}/ontologies/{ont2}.{onto_format}") &
+            (test[
+                 'Ontology1'] == f"{SELECTED_DATASET}/ontologies/{ont1}.{onto_format}") &
+            (test[
+                 'Ontology2'] == f"{SELECTED_DATASET}/ontologies/{ont2}.{onto_format}") &
             (test['Match'] == 1) & (test['Predict'] == 1)]
 
         true_num = len(true_mappings)
@@ -156,5 +167,5 @@ for alignment in TEST_ALIGNMENTS:
             best_ts = ts
             best_preds = preds
 
-    print(f"Best fmeasure for {alignment} is {best_fmeasure} with threshold {best_ts}")
-
+    print(
+        f"Best fmeasure for {alignment} is {best_fmeasure} with threshold {best_ts}")

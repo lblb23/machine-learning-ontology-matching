@@ -1,6 +1,7 @@
 import pandas as pd
-from utils_features import calculate_features
 import yaml
+
+from utils_features import calculate_features
 
 with open('config.yml') as file:
     config = yaml.load(file, Loader=yaml.FullLoader)

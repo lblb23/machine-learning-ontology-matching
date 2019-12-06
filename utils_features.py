@@ -1,31 +1,36 @@
+from itertools import product
+from re import finditer
+
 import ngram
 from fuzzycomp import fuzzycomp
-from py_stringmatching.similarity_measure.monge_elkan import MongeElkan
-from py_stringmatching.similarity_measure.needleman_wunsch import NeedlemanWunsch
-from py_stringmatching.similarity_measure.smith_waterman import SmithWaterman
+from gensim.models import KeyedVectors
+from nltk.corpus import wordnet
 from py_stringmatching.similarity_measure.affine import Affine
 from py_stringmatching.similarity_measure.bag_distance import BagDistance
 from py_stringmatching.similarity_measure.cosine import Cosine
-from py_stringmatching.similarity_measure.partial_ratio import PartialRatio
-from py_stringmatching.similarity_measure.soft_tfidf import SoftTfIdf
-from py_stringmatching.similarity_measure.editex import Editex
-from py_stringmatching.similarity_measure.generalized_jaccard import GeneralizedJaccard
-from py_stringmatching.similarity_measure.jaro_winkler import JaroWinkler
-from py_stringmatching.similarity_measure.levenshtein import Levenshtein
 from py_stringmatching.similarity_measure.dice import Dice
+from py_stringmatching.similarity_measure.editex import Editex
+from py_stringmatching.similarity_measure.generalized_jaccard import \
+    GeneralizedJaccard
 from py_stringmatching.similarity_measure.jaccard import Jaccard
 from py_stringmatching.similarity_measure.jaro import Jaro
-from py_stringmatching.similarity_measure.overlap_coefficient import OverlapCoefficient
-from py_stringmatching.similarity_measure.partial_token_sort import PartialTokenSort
+from py_stringmatching.similarity_measure.jaro_winkler import JaroWinkler
+from py_stringmatching.similarity_measure.levenshtein import Levenshtein
+from py_stringmatching.similarity_measure.monge_elkan import MongeElkan
+from py_stringmatching.similarity_measure.needleman_wunsch import \
+    NeedlemanWunsch
+from py_stringmatching.similarity_measure.overlap_coefficient import \
+    OverlapCoefficient
+from py_stringmatching.similarity_measure.partial_ratio import PartialRatio
+from py_stringmatching.similarity_measure.partial_token_sort import \
+    PartialTokenSort
 from py_stringmatching.similarity_measure.ratio import Ratio
+from py_stringmatching.similarity_measure.smith_waterman import SmithWaterman
+from py_stringmatching.similarity_measure.soft_tfidf import SoftTfIdf
 from py_stringmatching.similarity_measure.soundex import Soundex
 from py_stringmatching.similarity_measure.tfidf import TfIdf
 from py_stringmatching.similarity_measure.token_sort import TokenSort
 from py_stringmatching.similarity_measure.tversky_index import TverskyIndex
-from gensim.models import KeyedVectors
-from re import finditer
-from nltk.corpus import wordnet
-from itertools import product
 from tqdm import tqdm
 
 af = Affine()
@@ -53,11 +58,14 @@ over_coef = OverlapCoefficient()
 
 # It's long
 print('Loading word2vec model...')
-model = KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True)
+model = KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin',
+                                          binary=True)
 print('Word2vec model are loaded.')
 
+
 def camel_case_split(identifier):
-    matches = finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', identifier)
+    matches = finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)',
+                       identifier)
     return [m.group(0) for m in matches]
 
 
@@ -144,7 +152,8 @@ def calculate_features(dataset, string_type):
         ngrams4.append(ngram.NGram.compare(string1, string2, N=4))
         lws.append(lev.get_sim_score(string1, string2))
         jaros.append(jaro.get_sim_score(string1, string2))
-        lcs.append(2 * fuzzycomp.lcs_length(string1, string2) / (len(string1) + len(string2)))
+        lcs.append(2 * fuzzycomp.lcs_length(string1, string2) / (
+                len(string1) + len(string2)))
         nws.append(nw.get_raw_score(string1, string2))
         sws.append(sw.get_raw_score(string1, string2))
         afs.append(af.get_raw_score(string1, string2))
@@ -173,7 +182,8 @@ def calculate_features(dataset, string_type):
         allsyns1 = set(ss for word in row_set1 for ss in wordnet.synsets(word))
         allsyns2 = set(ss for word in row_set2 for ss in wordnet.synsets(word))
 
-        best = [wordnet.wup_similarity(s1, s2) for s1, s2 in product(allsyns1, allsyns2)]
+        best = [wordnet.wup_similarity(s1, s2) for s1, s2 in
+                product(allsyns1, allsyns2)]
         if len(best) > 0:
             wordnet_sims.append(best[0])
         else:
