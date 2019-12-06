@@ -38,7 +38,7 @@ git clone https://github.com/fuzzycode/fuzzycomp
 ```
 from exceptions import IndexError, ValueError
 ```
-3. Run
+3. Install the package
 ```
 python3 setup.py install
 ```
