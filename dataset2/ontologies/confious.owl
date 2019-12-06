@@ -1,0 +1,1398 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://confious#"
+  xml:base="http://confious">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Accepted_Paper">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="paper"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Rejected_Paper"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Undecided_Paper"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Manual_Paper_Assignment">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Program_Committee_member"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="manually_assign_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="paper_assignment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="intensity"/>
+  <owl:Class rdf:ID="start_date_of_camera-ready_submission">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="camera-ready_submission_date"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="date_of_notification">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="date"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#paper">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="article"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Contact_Person"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="has_author"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_author"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_concerned_conference"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="conference"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="bidding_of_reviewer">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="is_concerned_paper"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_member"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="activity"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="has_intensity"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#intensity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="URL">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="is_concerned_confernce_setup"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="conference_setup"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Contact_Person">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_author_of"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_confernce_setup"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#conference_setup"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="human"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="managing_of_conference_process">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Program_Committee_Chair"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_concerned_conference"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#conference"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#activity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Undecided_Paper">
+    <rdfs:subClassOf rdf:resource="#paper"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Rejected_Paper"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="reviewing_proces"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="goes_through"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Accepted_Paper"/>
+  </owl:Class>
+  <owl:Class rdf:about="#reviewing_proces">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#activity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="end_date_of_camera-ready_submission">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#camera-ready_submission_date"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Rejected_Paper">
+    <owl:disjointWith rdf:resource="#Accepted_Paper"/>
+    <rdfs:subClassOf rdf:resource="#paper"/>
+    <owl:disjointWith rdf:resource="#Undecided_Paper"/>
+  </owl:Class>
+  <owl:Class rdf:ID="abstract_submission_date">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#date"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="group_email">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#reviewing_proces"/>
+        <owl:onProperty>
+          <owl:TransitiveProperty rdf:ID="is_concerned"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#article"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_sent_to"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#human"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#date">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#conference_setup"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_confernce_setup"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Senior_Reviewer_URL">
+    <rdfs:subClassOf rdf:resource="#URL"/>
+  </owl:Class>
+  <owl:Class rdf:ID="notification">
+    <rdfs:subClassOf rdf:resource="#activity"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="has_result"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_result"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="notification_email"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Chair_URL">
+    <rdfs:subClassOf rdf:resource="#URL"/>
+  </owl:Class>
+  <owl:Class rdf:about="#article">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#human"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_author"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="abstract_of_paper">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#article"/>
+  </owl:Class>
+  <owl:Class rdf:ID="submission_process">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Undecided_Paper"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#paper_assignment"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_followed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Contact_Person"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#activity"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#date"/>
+      <owl:Class rdf:about="#URL"/>
+      <owl:Class rdf:ID="topic"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:about="#paper_assignment">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#activity"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Undecided_Paper"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="lower_tier_reviewing_process"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_followed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="start_date_of_conference">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="date_of_conference"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Senior_Program_Committee_member">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Program_Committee_member"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >4</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="supervises"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#supervises"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#lower_tier_reviewing_process"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="end_date_of_abstract_submission">
+    <rdfs:subClassOf rdf:resource="#abstract_submission_date"/>
+  </owl:Class>
+  <owl:Class rdf:about="#date_of_conference">
+    <rdfs:subClassOf rdf:resource="#date"/>
+  </owl:Class>
+  <owl:Class rdf:ID="phase_of_conference"/>
+  <owl:Class rdf:ID="Regular_Program_Committee_member">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Program_Committee_member"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="review"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_author_of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="start_date_of_full_paper_submission">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="full_paper_submission_date"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="start_date_of_abstract_submission">
+    <rdfs:subClassOf rdf:resource="#abstract_submission_date"/>
+  </owl:Class>
+  <owl:Class rdf:ID="end_date_of_conference">
+    <rdfs:subClassOf rdf:resource="#date_of_conference"/>
+  </owl:Class>
+  <owl:Class rdf:about="#review">
+    <rdfs:subClassOf rdf:resource="#article"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_created_in"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#lower_tier_reviewing_process"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_created_in"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="gives_classification"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_author"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_member"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="review_form">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_created_in"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_author"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_member"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="structure_created_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#article"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_created_in"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#lower_tier_reviewing_process"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#structure_created_by"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_concerned_review"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#camera-ready_submission_date">
+    <rdfs:subClassOf rdf:resource="#date"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Automatic_Paper_Assignment">
+    <rdfs:subClassOf rdf:resource="#paper_assignment"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_member"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="automatically_assign_paper"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#human">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="institute"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_employed_in"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="classification"/>
+  <owl:Class rdf:ID="summary_of_reviews">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#review"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_concerned_review"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_author"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Senior_Program_Committee_member"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_created_in"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="upper_tier_reviewing_process"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_created_in"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#article"/>
+  </owl:Class>
+  <owl:Class rdf:about="#full_paper_submission_date">
+    <rdfs:subClassOf rdf:resource="#date"/>
+  </owl:Class>
+  <owl:Class rdf:ID="end_date_of_full_paper_submission">
+    <rdfs:subClassOf rdf:resource="#full_paper_submission_date"/>
+  </owl:Class>
+  <owl:Class rdf:ID="acceptance_notification_email">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#notification_email"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Accepted_Paper"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="rejection_notification_email"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#upper_tier_reviewing_process">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#summary_of_reviews"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_result"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#notification"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_followed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Senior_Program_Committee_member"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#reviewing_proces"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#lower_tier_reviewing_process"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Program_Committee_member">
+    <rdfs:subClassOf rdf:resource="#human"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#topic"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="has_topic_of_interest"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#conference_setup"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_confernce_setup"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#conference_setup">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_start_date_of_abstract_submission"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#start_date_of_abstract_submission"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_start_date_of_conference"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#start_date_of_conference"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="includes_topic"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#topic"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#end_date_of_conference"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_end_date_of_conference"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Chair_URL"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_Chair_URL"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_made_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_start_date_or_full_paper_submission"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#start_date_of_full_paper_submission"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_concerned_conference"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#conference"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_end_date_of_camera_ready_submission"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#end_date_of_camera-ready_submission"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_made_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Senior_Reviewer_URL"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_SPC_URL"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#end_date_of_full_paper_submission"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_end_date_full_paper_submission"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Senior_Program_Committee_member"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_member_SPC"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_member_PCC"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Program_Committee_Chair"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_member_CP"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Contact_Person"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#start_date_of_camera-ready_submission"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_start_date_of_camera_ready_submission"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Contact_Person_URL"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_CP_URL"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_date_of_notification"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#date_of_notification"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Regular_Program_Committee_member"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_member_RPC"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_end_date_of_abstract_submission"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#end_date_of_abstract_submission"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="sets_RPC_URL"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Regular_Reviewer_URL"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Program_Committee_Chair">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_confernce_setup"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#conference_setup"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#managing_of_conference_process"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="performs_activity"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#human"/>
+  </owl:Class>
+  <owl:Class rdf:about="#conference">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_in_phase"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#phase_of_conference"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#conference_setup"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_confernce_setup"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Contact_Person_URL">
+    <rdfs:subClassOf rdf:resource="#URL"/>
+  </owl:Class>
+  <owl:Class rdf:about="#rejection_notification_email">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#notification_email"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Rejected_Paper"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#acceptance_notification_email"/>
+  </owl:Class>
+  <owl:Class rdf:about="#lower_tier_reviewing_process">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#review_form"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_result"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_followed_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#upper_tier_reviewing_process"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_supervised_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Senior_Program_Committee_member"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#upper_tier_reviewing_process"/>
+    <rdfs:subClassOf rdf:resource="#reviewing_proces"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_checked_in"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#review"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_result"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_checked_in"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#upper_tier_reviewing_process"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Regular_Program_Committee_member"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_performed_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#notification_email">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Contact_Person"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#is_sent_to"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Program_Committee_Chair"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#has_author"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#article"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#is_concerned_paper"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#paper"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Regular_Reviewer_URL">
+    <rdfs:subClassOf rdf:resource="#URL"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#sets_end_date_of_conference">
+    <rdfs:range rdf:resource="#end_date_of_conference"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="sets_end_date"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#goes_through">
+    <rdfs:domain rdf:resource="#article"/>
+    <rdfs:range rdf:resource="#activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_author_of">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#has_author"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#human"/>
+    <rdfs:range rdf:resource="#article"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_followed_by">
+    <rdfs:range rdf:resource="#activity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_end_date_of_abstract_submission">
+    <rdfs:range rdf:resource="#end_date_of_abstract_submission"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#sets_end_date"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_member_PCC">
+    <rdfs:range rdf:resource="#Program_Committee_Chair"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="sets_member"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_RPC_URL">
+    <rdfs:range rdf:resource="#Regular_Reviewer_URL"/>
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:ID="sets_URL"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#performs_activity">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#is_performed_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#activity"/>
+    <rdfs:domain rdf:resource="#human"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_start_date_or_full_paper_submission">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="sets_start_date"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#start_date_of_full_paper_submission"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_employed_in">
+    <rdfs:domain rdf:resource="#human"/>
+    <rdfs:range rdf:resource="#institute"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_member_SPC">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#sets_member"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Senior_Program_Committee_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_sent_to">
+    <rdfs:range rdf:resource="#human"/>
+    <rdfs:domain rdf:resource="#article"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_concerned_conference">
+    <rdfs:range rdf:resource="#conference"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#is_concerned"/>
+    </rdfs:subPropertyOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_start_date">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:ID="sets_date"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_topic_of_interest">
+    <rdfs:range rdf:resource="#topic"/>
+    <rdfs:domain rdf:resource="#human"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="is_monitored_by">
+    <rdfs:domain rdf:resource="#activity"/>
+    <rdfs:range rdf:resource="#human"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_member">
+    <rdfs:range rdf:resource="#human"/>
+    <rdfs:domain rdf:resource="#conference_setup"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_created_in">
+    <rdfs:domain rdf:resource="#article"/>
+    <rdfs:range rdf:resource="#activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#supervises">
+    <rdfs:range rdf:resource="#activity"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#is_supervised_by"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#human"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_Chair_URL">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#sets_URL"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Chair_URL"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_start_date_of_camera_ready_submission">
+    <rdfs:subPropertyOf rdf:resource="#sets_start_date"/>
+    <rdfs:range rdf:resource="#start_date_of_camera-ready_submission"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#structure_created_by">
+    <rdfs:domain rdf:resource="#article"/>
+    <rdfs:range rdf:resource="#human"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_start_date_of_conference">
+    <rdfs:range rdf:resource="#start_date_of_conference"/>
+    <rdfs:subPropertyOf rdf:resource="#sets_start_date"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#automatically_assign_paper">
+    <rdfs:domain rdf:resource="#Automatic_Paper_Assignment"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="assign_paper"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_end_date_of_camera_ready_submission">
+    <rdfs:range rdf:resource="#end_date_of_camera-ready_submission"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#sets_end_date"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_member_RPC">
+    <rdfs:range rdf:resource="#Regular_Program_Committee_member"/>
+    <rdfs:subPropertyOf rdf:resource="#sets_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#assign_paper">
+    <rdfs:domain rdf:resource="#paper_assignment"/>
+    <rdfs:range rdf:resource="#Program_Committee_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_made_by">
+    <rdfs:domain rdf:resource="#conference_setup"/>
+    <rdfs:range rdf:resource="#human"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#manually_assign_paper">
+    <rdfs:domain rdf:resource="#Manual_Paper_Assignment"/>
+    <rdfs:subPropertyOf rdf:resource="#assign_paper"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_member_CP">
+    <rdfs:range rdf:resource="#Contact_Person"/>
+    <rdfs:subPropertyOf rdf:resource="#sets_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_author">
+    <rdfs:range rdf:resource="#human"/>
+    <rdfs:domain rdf:resource="#article"/>
+    <owl:inverseOf rdf:resource="#is_author_of"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#includes_topic">
+    <rdfs:range rdf:resource="#topic"/>
+    <rdfs:domain rdf:resource="#conference_setup"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_intensity">
+    <rdfs:range rdf:resource="#intensity"/>
+    <rdfs:domain rdf:resource="#activity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_end_date_full_paper_submission">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#sets_end_date"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#date"/>
+          <owl:Class rdf:about="#end_date_of_full_paper_submission"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_SPC_URL">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#sets_URL"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Senior_Reviewer_URL"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_concerned_review">
+    <rdfs:range rdf:resource="#review"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#is_concerned"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_end_date">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#sets_date"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_result">
+    <rdfs:range rdf:resource="#article"/>
+    <rdfs:domain rdf:resource="#activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_CP_URL">
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#sets_URL"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Contact_Person_URL"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_start_date_of_abstract_submission">
+    <rdfs:subPropertyOf rdf:resource="#sets_start_date"/>
+    <rdfs:range rdf:resource="#start_date_of_abstract_submission"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_in_phase">
+    <rdfs:range rdf:resource="#phase_of_conference"/>
+    <rdfs:domain rdf:resource="#conference"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#sets_date_of_notification">
+    <rdfs:range rdf:resource="#date_of_notification"/>
+    <rdfs:subPropertyOf>
+      <owl:FunctionalProperty rdf:about="#sets_date"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_performed_by">
+    <rdfs:domain rdf:resource="#activity"/>
+    <rdfs:range rdf:resource="#human"/>
+    <owl:inverseOf rdf:resource="#performs_activity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_supervised_by">
+    <rdfs:domain rdf:resource="#activity"/>
+    <rdfs:range rdf:resource="#human"/>
+    <owl:inverseOf rdf:resource="#supervises"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_checked_in">
+    <rdfs:range rdf:resource="#activity"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#article"/>
+          <owl:Class rdf:about="#activity"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="telephone">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#human"/>
+          <owl:Class rdf:about="#institute"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="full_paper_size">
+    <rdfs:domain rdf:resource="#paper"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="e-mail">
+    <rdfs:domain rdf:resource="#human"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>    
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="last_name">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#human"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="first_name">
+    <rdfs:domain rdf:resource="#human"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:TransitiveProperty rdf:about="#is_concerned">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:FunctionalProperty rdf:about="#sets_date">
+    <rdfs:range rdf:resource="#date"/>
+    <rdfs:domain rdf:resource="#conference_setup"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#sets_URL">
+    <rdfs:domain rdf:resource="#conference_setup"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#URL"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#is_concerned_confernce_setup">
+    <rdfs:subPropertyOf rdf:resource="#is_concerned"/>
+    <rdfs:range rdf:resource="#conference_setup"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#gives_classification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#classification"/>
+    <rdfs:domain rdf:resource="#article"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#is_concerned_paper">
+    <rdfs:range rdf:resource="#paper"/>
+    <rdfs:subPropertyOf rdf:resource="#is_concerned"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <phase_of_conference rdf:ID="Decision_Phase"/>
+  <phase_of_conference rdf:ID="Abstract_Submission_Phase"/>
+  <intensity rdf:ID="high"/>
+  <phase_of_conference rdf:ID="Setup_Phase"/>
+  <intensity rdf:ID="neutral"/>
+  <classification rdf:ID="Strong_Reject"/>
+  <phase_of_conference rdf:ID="Camera-ready_Paper_Submission_Phase"/>
+  <phase_of_conference rdf:ID="Full_Paper_Submission_Phase"/>
+  <classification rdf:ID="Weak_Reject"/>
+  <phase_of_conference rdf:ID="Invitation_Phase"/>
+  <phase_of_conference rdf:ID="Bidding_Phase"/>
+  <classification rdf:ID="Strong_Accept"/>
+  <phase_of_conference rdf:ID="Reviewing_Phase"/>
+  <phase_of_conference rdf:ID="Publish_Reviewing_Results_Phase"/>
+  <phase_of_conference rdf:ID="Assignment_Phase"/>
+  <classification rdf:ID="Weak_Accept"/>
+  <intensity rdf:ID="low"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.1, Build 284)  http://protege.stanford.edu -->

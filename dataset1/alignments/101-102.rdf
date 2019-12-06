@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'>
+<Alignment>
+  <xml>yes</xml>
+  <level>0</level>
+  <type>11</type>
+  <onto1>http://oaei.ontologymatching.org/2006/benchmarks/101/onto.rdf</onto1>
+  <onto2>http://oaei.ontologymatching.org/2006/benchmarks/102/onto.rdf</onto2>
+  <uri1>http://oaei.ontologymatching.org/2006/benchmarks/101/onto.rdf</uri1>
+  <uri2>http://oaei.ontologymatching.org/2006/benchmarks/102/onto.rdf</uri2>
+  <map>
+  </map>
+</Alignment>
+</rdf:RDF>

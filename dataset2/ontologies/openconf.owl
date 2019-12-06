@@ -1,0 +1,1239 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://openconf#"
+  xml:base="http://openconf">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="RFC">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Topics"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Classic_Papers"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Networking"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Humour"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Programming"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Computer_Science"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Format">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Value_Partition"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Format of submmised papers files</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Adobe_PDF"/>
+          <owl:Class rdf:ID="MS_Word"/>
+          <owl:Class rdf:ID="Corel_Word_Perfect"/>
+          <owl:Class rdf:ID="HTML"/>
+          <owl:Class rdf:ID="PostScript"/>
+          <owl:Class rdf:ID="RTF"/>
+          <owl:Class rdf:ID="Text"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="High">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Reviewer_Famliliarity"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Low"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Moderate"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Marginal_Tend_to_Reject">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Reccommendation"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Marginal_Tend_to_Accept"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Portable_Reject"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Must_Accept"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Clear_Reject"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Clear_Accept"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Program_chair">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Conference_Program"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_made_review"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="is_member_of"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Program_Committee"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Class rdf:ID="Member"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="made_program"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Conference_Program"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Conference_Program">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="Program_made_by"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Program_chair"/>
+          </owl:Restriction>
+          <owl:Class rdf:ID="Domain_Topic"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="planned_papers"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Planed_Paper"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Valuable_Confirmation_of_Present_Knowledge">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Other"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Not_Much"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="New_Information"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="New_Perspective_Issue_Problem_Solving"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Clarity_to_Present_Understanding"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Overall_Value"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Must_Accept">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Reccommendation"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Clear_Accept"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Reject"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Marginal_Tend_to_Accept"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Portable_Reject"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Clear_Reject"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Programming">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Classic_Papers"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Networking"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Computer_Science"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#RFC"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Humour"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Topics"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Tends_Towards_Theoretical">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Paper_Categorization"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Tends_Towards_Practical"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Balanced_Theory_and_Practice"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Highly_Theoretical"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Highly_Practical"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Highly_Practical">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Paper_Categorization"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Tends_Towards_Theoretical"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Balanced_Theory_and_Practice"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Tends_Towards_Practical"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Highly_Theoretical"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Adobe_PDF">
+    <rdfs:subClassOf rdf:resource="#Format"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Corel_Word_Perfect"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#RTF"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#MS_Word"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PostScript"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Text"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HTML"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Computer_Science">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Topics"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Classic_Papers"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#RFC"/>
+    <owl:disjointWith rdf:resource="#Programming"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Networking"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Humour"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Reviewed_Paper">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Submitted_Paper"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_Review"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Paper_Review"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Clear_Accept">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Marginal_Tend_to_Accept"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Reject"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Portable_Reject"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Must_Accept"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Clear_Reject"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Reccommendation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Marginal_Tend_to_Accept">
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Reject"/>
+    <owl:disjointWith rdf:resource="#Must_Accept"/>
+    <owl:disjointWith rdf:resource="#Clear_Accept"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Portable_Reject"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Clear_Reject"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Reccommendation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Long_bool">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Value_Partition"/>
+          <owl:Class>
+            <owl:oneOf rdf:parseType="Collection">
+              <Long_bool rdf:ID="Yes"/>
+              <Long_bool rdf:ID="No"/>
+              <Long_bool rdf:ID="Unsure"/>
+            </owl:oneOf>
+          </owl:Class>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Clear_Reject">
+    <owl:disjointWith rdf:resource="#Must_Accept"/>
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Accept"/>
+    <owl:disjointWith rdf:resource="#Clear_Accept"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Portable_Reject"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Reject"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Reccommendation"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Paper">
+    <rdfs:subClassOf rdf:resource="#Domain_Topic"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Author"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_written_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Reviewer_Famliliarity">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#High"/>
+              <owl:Class rdf:about="#Low"/>
+              <owl:Class rdf:about="#Moderate"/>
+            </owl:unionOf>
+          </owl:Class>
+          <owl:Class rdf:ID="Review_Values"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Reviewer familiarity with subject matter.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Review_Committee">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Committees"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Reviewer"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_member"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Paper_File">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Domain_Topic"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Format"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="is_Type"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Committees">
+    <rdfs:subClassOf rdf:resource="#Domain_Topic"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Advocate">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Member"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Topics"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="is_From_Area_of_Interest"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#is_member_of"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Program_Committee"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Advocated_Paper"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="will_advocate"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Not_Much">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Other"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#New_Perspective_Issue_Problem_Solving"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Clarity_to_Present_Understanding"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Valuable_Confirmation_of_Present_Knowledge"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#New_Information"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Overall_Value"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Text">
+    <rdfs:subClassOf rdf:resource="#Format"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HTML"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Corel_Word_Perfect"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#RTF"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#MS_Word"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Adobe_PDF"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PostScript"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Contact_Author">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Author"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Humour">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Topics"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#RFC"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Classic_Papers"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Programming"/>
+    <owl:disjointWith rdf:resource="#Computer_Science"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Networking"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Review_Values">
+    <rdfs:subClassOf rdf:resource="#Value_Partition"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Highly_Theoretical">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Paper_Categorization"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Tends_Towards_Practical"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Tends_Towards_Theoretical"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Balanced_Theory_and_Practice"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Highly_Practical"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Result_of_Advocate">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Value_Partition"/>
+          <owl:Class>
+            <owl:oneOf rdf:parseType="Collection">
+              <Result_of_Advocate rdf:ID="Accept"/>
+              <Result_of_Advocate rdf:ID="Reject"/>
+              <Long_bool rdf:about="#Unsure"/>
+            </owl:oneOf>
+          </owl:Class>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Tends_Towards_Practical">
+    <owl:disjointWith rdf:resource="#Highly_Practical"/>
+    <owl:disjointWith rdf:resource="#Tends_Towards_Theoretical"/>
+    <owl:disjointWith rdf:resource="#Highly_Theoretical"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Balanced_Theory_and_Practice"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Paper_Categorization"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Planed_Paper">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Paper planned in the program of the conference</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Submitted_Paper"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Conference_Program"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="is_planned_in"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_Result"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Result_of_Advocate"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Paper_Review"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#has_Review"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Paper_Categorization">
+    <rdfs:subClassOf rdf:resource="#Review_Values"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Balanced_Theory_and_Practice"/>
+          <owl:Class rdf:about="#Highly_Practical"/>
+          <owl:Class rdf:about="#Highly_Theoretical"/>
+          <owl:Class rdf:about="#Tends_Towards_Practical"/>
+          <owl:Class rdf:about="#Tends_Towards_Theoretical"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Program_Committee">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Committees"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Program_chair"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#has_member"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Advocate"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#has_member"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Balanced_Theory_and_Practice">
+    <owl:disjointWith rdf:resource="#Highly_Practical"/>
+    <owl:disjointWith rdf:resource="#Tends_Towards_Practical"/>
+    <owl:disjointWith rdf:resource="#Tends_Towards_Theoretical"/>
+    <owl:disjointWith rdf:resource="#Highly_Theoretical"/>
+    <rdfs:subClassOf rdf:resource="#Paper_Categorization"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Reccommendation">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Clear_Accept"/>
+          <owl:Class rdf:about="#Marginal_Tend_to_Accept"/>
+          <owl:Class rdf:about="#Marginal_Tend_to_Reject"/>
+          <owl:Class rdf:about="#Must_Accept"/>
+          <owl:Class rdf:about="#Portable_Reject"/>
+          <owl:Class rdf:about="#Clear_Reject"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review Reccommendations</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Review_Values"/>
+  </owl:Class>
+  <owl:Class rdf:about="#MS_Word">
+    <owl:disjointWith rdf:resource="#Adobe_PDF"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HTML"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#RTF"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Text"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PostScript"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Corel_Word_Perfect"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Format"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Clarity_to_Present_Understanding">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Overall_Value"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Not_Much"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Other"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#New_Information"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Valuable_Confirmation_of_Present_Knowledge"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#New_Perspective_Issue_Problem_Solving"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Corel_Word_Perfect">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#RTF"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#MS_Word"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HTML"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Adobe_PDF"/>
+    <owl:disjointWith rdf:resource="#Text"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PostScript"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#Format"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Classic_Papers">
+    <owl:disjointWith rdf:resource="#Computer_Science"/>
+    <owl:disjointWith rdf:resource="#Humour"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Networking"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Programming"/>
+    <owl:disjointWith rdf:resource="#RFC"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Topics"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Advocated_Paper">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Submitted_Paper"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="to_advocate_by"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Advocate"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#has_Result"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Result_of_Advocate"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#RTF">
+    <owl:disjointWith rdf:resource="#MS_Word"/>
+    <owl:disjointWith rdf:resource="#Corel_Word_Perfect"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#PostScript"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Adobe_PDF"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HTML"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Text"/>
+    <rdfs:subClassOf rdf:resource="#Format"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PostScript">
+    <rdfs:subClassOf rdf:resource="#Format"/>
+    <owl:disjointWith rdf:resource="#RTF"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HTML"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Text"/>
+    <owl:disjointWith rdf:resource="#MS_Word"/>
+    <owl:disjointWith rdf:resource="#Adobe_PDF"/>
+    <owl:disjointWith rdf:resource="#Corel_Word_Perfect"/>
+  </owl:Class>
+  <owl:Class>
+    <owl:unionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="#Clear_Accept"/>
+      <owl:Class rdf:about="#Marginal_Tend_to_Accept"/>
+      <owl:Class rdf:about="#Marginal_Tend_to_Reject"/>
+      <owl:Class rdf:about="#Must_Accept"/>
+      <owl:Class rdf:about="#Portable_Reject"/>
+    </owl:unionOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Paper_Review">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Review of the Paper</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_Reccommendation"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Reccommendation"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Paper_Categorization"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_Categorization"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="has_Overall"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Overall_Value"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Class rdf:about="#Domain_Topic"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Long_bool"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="is_Candidate_for_Award"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Long_bool"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="appropriate_length"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Reviewer"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="Review_made_by"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Member">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="People"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#New_Perspective_Issue_Problem_Solving">
+    <owl:disjointWith rdf:resource="#Valuable_Confirmation_of_Present_Knowledge"/>
+    <owl:disjointWith rdf:resource="#Not_Much"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Other"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Clarity_to_Present_Understanding"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#New_Information"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Overall_Value"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Author">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#People"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="writes_Paper"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Paper"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Portable_Reject">
+    <rdfs:subClassOf rdf:resource="#Reccommendation"/>
+    <owl:disjointWith rdf:resource="#Must_Accept"/>
+    <owl:disjointWith rdf:resource="#Clear_Accept"/>
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Reject"/>
+    <owl:disjointWith rdf:resource="#Marginal_Tend_to_Accept"/>
+    <owl:disjointWith rdf:resource="#Clear_Reject"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Networking">
+    <owl:disjointWith rdf:resource="#RFC"/>
+    <owl:disjointWith rdf:resource="#Humour"/>
+    <owl:disjointWith rdf:resource="#Computer_Science"/>
+    <owl:disjointWith rdf:resource="#Programming"/>
+    <owl:disjointWith rdf:resource="#Classic_Papers"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Topics"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Low">
+    <rdfs:subClassOf rdf:resource="#Reviewer_Famliliarity"/>
+    <owl:disjointWith rdf:resource="#High"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Moderate"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Overall_Value">
+    <rdfs:subClassOf rdf:resource="#Review_Values"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Clarity_to_Present_Understanding"/>
+          <owl:Class rdf:about="#New_Information"/>
+          <owl:Class rdf:about="#New_Perspective_Issue_Problem_Solving"/>
+          <owl:Class rdf:about="#Not_Much"/>
+          <owl:Class rdf:about="#Other"/>
+          <owl:Class rdf:about="#Valuable_Confirmation_of_Present_Knowledge"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#HTML">
+    <owl:disjointWith rdf:resource="#Adobe_PDF"/>
+    <owl:disjointWith rdf:resource="#MS_Word"/>
+    <owl:disjointWith rdf:resource="#RTF"/>
+    <owl:disjointWith rdf:resource="#Text"/>
+    <owl:disjointWith rdf:resource="#Corel_Word_Perfect"/>
+    <owl:disjointWith rdf:resource="#PostScript"/>
+    <rdfs:subClassOf rdf:resource="#Format"/>
+  </owl:Class>
+  <owl:Class rdf:about="#People">
+    <rdfs:subClassOf rdf:resource="#Domain_Topic"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >obecná třída pro všechny lidi</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Topics">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Classic_Papers"/>
+          <owl:Class rdf:about="#Programming"/>
+          <owl:Class rdf:about="#RFC"/>
+          <owl:Class rdf:about="#Computer_Science"/>
+          <owl:Class rdf:about="#Networking"/>
+          <owl:Class rdf:about="#Humour"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>    
+    <rdfs:subClassOf rdf:resource="#Value_Partition"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >souhrný seznam základních témat</rdfs:comment>
+  </owl:Class>
+  <Topics rdf:ID="Technical_Area"/>
+  <Topics rdf:ID="Areas_of_interest"/>
+  <owl:Class rdf:about="#Reviewer">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#is_From_Area_of_Interest"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Topics"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#is_member_of"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Review_Committee"/>
+          </owl:Restriction>
+          <owl:Class rdf:about="#Member"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Paper_Review"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#has_made_review"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#New_Information">
+    <owl:disjointWith rdf:resource="#Valuable_Confirmation_of_Present_Knowledge"/>
+    <owl:disjointWith rdf:resource="#New_Perspective_Issue_Problem_Solving"/>
+    <owl:disjointWith rdf:resource="#Not_Much"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Other"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Clarity_to_Present_Understanding"/>
+    <rdfs:subClassOf rdf:resource="#Overall_Value"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Submitted_Paper">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="has_been_sent_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Contact_Author"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Paper"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Paper_File"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="is_stored_in"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Other">
+    <owl:disjointWith rdf:resource="#New_Information"/>
+    <owl:disjointWith rdf:resource="#Valuable_Confirmation_of_Present_Knowledge"/>
+    <owl:disjointWith rdf:resource="#Not_Much"/>
+    <owl:disjointWith rdf:resource="#Clarity_to_Present_Understanding"/>
+    <owl:disjointWith rdf:resource="#New_Perspective_Issue_Problem_Solving"/>
+    <rdfs:subClassOf rdf:resource="#Overall_Value"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Moderate">
+    <owl:disjointWith rdf:resource="#Low"/>
+    <owl:disjointWith rdf:resource="#High"/>
+    <rdfs:subClassOf rdf:resource="#Reviewer_Famliliarity"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#is_Candidate_for_Award">
+    <rdfs:range rdf:resource="#Long_bool"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_stored_in">
+    <rdfs:domain rdf:resource="#Submitted_Paper"/>
+    <rdfs:range rdf:resource="#Paper_File"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#appropriate_length">
+    <rdfs:range rdf:resource="#Long_bool"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_planned_in">
+    <rdfs:range rdf:resource="#Conference_Program"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#planned_papers"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Planed_Paper"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_written_by">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#writes_Paper"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Paper"/>
+    <rdfs:range rdf:resource="#Author"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#to_advocate_by">
+    <rdfs:range rdf:resource="#Advocate"/>
+    <rdfs:domain rdf:resource="#Advocated_Paper"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#will_advocate"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_Categorization">
+    <rdfs:range rdf:resource="#Paper_Categorization"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_member">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Advocate"/>
+          <owl:Class rdf:about="#Reviewer"/>
+          <owl:Class rdf:about="#Program_chair"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Review_Committee"/>
+          <owl:Class rdf:about="#Program_Committee"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#is_member_of"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#made_program">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#Program_made_by"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Program_chair"/>
+    <rdfs:range rdf:resource="#Conference_Program"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_Review">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Reviewed_Paper"/>
+          <owl:Class rdf:about="#Planed_Paper"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_Overall">
+    <rdfs:range rdf:resource="#Overall_Value"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#will_advocate">
+    <owl:inverseOf rdf:resource="#to_advocate_by"/>
+    <rdfs:range rdf:resource="#Advocated_Paper"/>
+    <rdfs:domain rdf:resource="#Advocate"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_Reccommendation">
+    <rdfs:range rdf:resource="#Reccommendation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DeprecatedProperty"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#Program_made_by">
+    <rdfs:range rdf:resource="#Program_chair"/>
+    <owl:inverseOf rdf:resource="#made_program"/>
+    <rdfs:domain rdf:resource="#Conference_Program"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_From_Area_of_Interest">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Reviewer"/>
+          <owl:Class rdf:about="#Advocate"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Topics"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="has_sent">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#has_been_sent_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Submitted_Paper"/>
+    <rdfs:domain rdf:resource="#Contact_Author"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_made_review">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#Review_made_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Paper_Review"/>
+    <rdfs:domain rdf:resource="#Reviewer"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#planned_papers">
+    <owl:inverseOf rdf:resource="#is_planned_in"/>
+    <rdfs:range rdf:resource="#Planed_Paper"/>
+    <rdfs:domain rdf:resource="#Conference_Program"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#Review_made_by">
+    <owl:inverseOf rdf:resource="#has_made_review"/>
+    <rdfs:range rdf:resource="#Reviewer"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_member_of">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Program_chair"/>
+          <owl:Class rdf:about="#Reviewer"/>
+          <owl:Class rdf:about="#Advocate"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Review_Committee"/>
+          <owl:Class rdf:about="#Program_Committee"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <owl:inverseOf rdf:resource="#has_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#writes_Paper">
+    <owl:inverseOf rdf:resource="#is_written_by"/>
+    <rdfs:domain rdf:resource="#Author"/>
+    <rdfs:range rdf:resource="#Paper"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_been_sent_by">
+    <owl:inverseOf rdf:resource="#has_sent"/>
+    <rdfs:range rdf:resource="#Contact_Author"/>
+    <rdfs:domain rdf:resource="#Submitted_Paper"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_Type">
+    <rdfs:range rdf:resource="#Format"/>
+    <rdfs:domain rdf:resource="#Paper_File"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has_Result">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Advocated_Paper"/>
+          <owl:Class rdf:about="#Planed_Paper"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Result_of_Advocate"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="Surname">
+    <rdfs:domain rdf:resource="#People"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="UserName">
+    <rdfs:domain rdf:resource="#Reviewer"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Name">
+    <rdfs:domain rdf:resource="#People"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Paper_Id">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Submitted_Paper"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Comments_for_Author">
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Abstract">
+    <rdfs:domain rdf:resource="#Paper"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Comments_for_Program_Committee">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Paper_Review"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Comments_To_Chair">
+    <rdfs:domain rdf:resource="#Submitted_Paper"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Web_Address">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Title">
+    <rdfs:domain rdf:resource="#Paper"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Web_address">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Member"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Password">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Submitted_Paper"/>
+          <owl:Class rdf:about="#Member"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Country">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#People"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Telephone">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Contact_Author"/>
+          <owl:Class rdf:about="#Member"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="E-mail">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#People"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Students">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Paper"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Organisation">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#People"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Comments_to_Chair">
+    <rdfs:domain rdf:resource="#Reviewer"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Alternate_Email">
+    <rdfs:domain rdf:resource="#Contact_Author"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Keywords">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Paper"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="Other_Areas">
+    <rdfs:domain rdf:resource="#Reviewer"/>
+  </owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4, Build 501)  http://protege.stanford.edu -->

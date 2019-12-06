@@ -1,0 +1,704 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://cocus#"
+  xml:base="http://cocus">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Workshop">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Account"/>
+  <owl:Class rdf:ID="Inforamtion"/>
+  <owl:Class rdf:ID="User">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="register"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Account"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Role"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="execute"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Help_Request"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="send"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Person"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Event"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="take_part_in"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Symposium">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Event"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Abstract">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Paper"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Role">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="assigned_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Administrator"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Document">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="created_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Person"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="used_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Person"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Invited_Paper">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Paper"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Admin_Role">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Paper_Typologies">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Event_Setup"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Event_URL">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="concerned"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Event"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="URL"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Event_Setup">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Event"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="define"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Notification_Email">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Email"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Short_Paper">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Paper"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Email">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Person"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="recieved_by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Author_Role">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Preview">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Review_Form"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Review">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Committe_Role">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Group_Email">
+    <rdfs:subClassOf rdf:resource="#Email"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Submission_Template">
+    <rdfs:subClassOf rdf:resource="#Event_Setup"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Review_Form_Setup">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Review_Form"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Misc">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Help_Request"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Author">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Event_Creation"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#execute"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Author"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="remove"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Author"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="add"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#User"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:ID="Approval_Email"/>
+              <owl:Class rdf:ID="Rejection_Email"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="recieve"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Submission">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Template">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#used_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Person"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Feature_Request">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Help_Request"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Approval_Email">
+    <rdfs:subClassOf rdf:resource="#Email"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Committee">
+    <rdfs:subClassOf rdf:resource="#User"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Event">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Event_Tracks"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="conists_of"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="confirmed_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Approval_Email"/>        
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#created_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Person"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Request">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Activity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Head_Role">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Help_Request">
+    <rdfs:subClassOf rdf:resource="#Request"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Detail">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="modified_by"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Person"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Review_Form">
+    <rdfs:subClassOf rdf:resource="#Event_Setup"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Paper">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Corresponding_Author"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="submited__by"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Rejection_Email">
+    <rdfs:subClassOf rdf:resource="#Email"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Reviewer_Role">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Administrator">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#execute"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Admin_Role"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#execute"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Event_Approval"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="approve"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Event"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Person"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Event_Tracks">
+    <rdfs:subClassOf rdf:resource="#Event_Setup"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Registration">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#User"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="has_result"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Corresponding_Author">
+    <rdfs:subClassOf rdf:resource="#Author"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Full_Paper">
+    <rdfs:subClassOf rdf:resource="#Paper"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Research_Topic">
+    <rdfs:subClassOf rdf:resource="#Event_Setup"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Person">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Inforamtion"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="get"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Event_Approval">
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#has_result"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Approval_Email"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Description"/>
+  <owl:Class rdf:about="#Event_Creation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Event"/>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:about="#has_result"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Activity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Conference">
+    <rdfs:subClassOf rdf:resource="#Event"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Assistance">
+    <rdfs:subClassOf rdf:resource="#Help_Request"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Email_Template">
+    <rdfs:subClassOf rdf:resource="#Event_Setup"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="confirm">
+    <rdfs:domain rdf:resource="#Approval_Email"/>
+    <rdfs:range rdf:resource="#Event"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#confirmed_by"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#recieved_by">
+    <rdfs:range rdf:resource="#User"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#recieve"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Document"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="inverse_of_add">
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Class rdf:about="#Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#assigned_by">
+    <owl:inverseOf>
+      <owl:FunctionalProperty rdf:ID="assign"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Role"/>
+    <rdfs:range rdf:resource="#Administrator"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#execute">
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Role"/>
+          <owl:Class rdf:about="#Activity"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#recieve">
+    <owl:inverseOf rdf:resource="#recieved_by"/>
+    <rdfs:range rdf:resource="#Document"/>
+    <rdfs:domain rdf:resource="#User"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="create">
+    <rdfs:domain rdf:resource="#User"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#created_by"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#get">
+    <rdfs:range rdf:resource="#Inforamtion"/>
+    <rdfs:domain rdf:resource="#Person"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#concerned">
+    <rdfs:domain rdf:resource="#Event_URL"/>
+    <rdfs:range rdf:resource="#Event"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="use">
+    <rdfs:range rdf:resource="#Document"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#used_by"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="owns"/>
+  <owl:ObjectProperty rdf:ID="submit">
+    <rdfs:range rdf:resource="#Document"/>
+    <rdfs:domain rdf:resource="#User"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#submited__by"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#modified_by">
+    <rdfs:range rdf:resource="#Person"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="modify"/>
+    </owl:inverseOf>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Account"/>
+          <owl:Class rdf:about="#Detail"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#conists_of">
+    <rdfs:domain rdf:resource="#Event"/>
+    <rdfs:range rdf:resource="#Event_Tracks"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="registred_by">
+    <rdfs:domain rdf:resource="#Account"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#register"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Person"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#used_by">
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:domain rdf:resource="#Document"/>
+    <owl:inverseOf rdf:resource="#use"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#register">
+    <rdfs:domain rdf:resource="#Person"/>
+    <owl:inverseOf rdf:resource="#registred_by"/>
+    <rdfs:range rdf:resource="#Account"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#submited__by">
+    <rdfs:domain rdf:resource="#Document"/>
+    <owl:inverseOf rdf:resource="#submit"/>
+    <rdfs:range rdf:resource="#User"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#created_by">
+    <owl:inverseOf rdf:resource="#create"/>
+    <rdfs:range rdf:resource="#User"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#confirmed_by">
+    <rdfs:domain rdf:resource="#Event"/>
+    <owl:inverseOf rdf:resource="#confirm"/>
+    <rdfs:range rdf:resource="#Approval_Email"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#approve">
+    <rdfs:domain rdf:resource="#Administrator"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="approved_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Event"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#define">
+    <rdfs:domain rdf:resource="#Event_Setup"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="defined_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Event"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#modify">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Account"/>
+          <owl:Class rdf:about="#Detail"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#Person"/>
+    <owl:inverseOf rdf:resource="#modified_by"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#take_part_in">
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Event"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#defined_by">
+    <rdfs:range rdf:resource="#Event_Setup"/>
+    <rdfs:domain rdf:resource="#Event"/>
+    <owl:inverseOf rdf:resource="#define"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#approved_by">
+    <owl:inverseOf rdf:resource="#approve"/>
+    <rdfs:domain rdf:resource="#Event"/>
+    <rdfs:range rdf:resource="#Administrator"/>
+  </owl:ObjectProperty>
+  <owl:FunctionalProperty rdf:about="#remove">
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="removed_by"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Class rdf:about="#Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#add">
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="added_by"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#send">
+    <rdfs:domain rdf:resource="#Person"/>
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="sent_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Activity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#has_result">
+    <rdfs:domain rdf:resource="#Activity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#assign">
+    <owl:inverseOf rdf:resource="#assigned_by"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Role"/>
+    <rdfs:domain rdf:resource="#Administrator"/>
+  </owl:FunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#sent_by">
+    <rdfs:domain rdf:resource="#Activity"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <owl:inverseOf rdf:resource="#send"/>
+  </owl:InverseFunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#added_by">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <owl:inverseOf rdf:resource="#add"/>
+  </owl:InverseFunctionalProperty>
+  <owl:InverseFunctionalProperty rdf:about="#removed_by">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Class rdf:about="#Document"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Person"/>
+    <owl:inverseOf rdf:resource="#remove"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:InverseFunctionalProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.2.1, Build 365)  http://protege.stanford.edu -->

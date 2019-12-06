@@ -1,0 +1,1174 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY linklings "http://linklings#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://linklings.owl#"
+     xml:base="http://linklings.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:linklings="http://linklings#">
+    <owl:Ontology rdf:about="http://linklings.owl"/>
+            
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://linklings#hasContent -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasContent">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="&linklings;Content"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasContentType -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasContentType">
+        <rdfs:range rdf:resource="&linklings;ContentType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasPersonAssigned -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasPersonAssigned">
+        <rdfs:range rdf:resource="&linklings;Person"/>
+        <owl:inverseOf rdf:resource="&linklings;hasRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasPlace -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasPlace">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="&linklings;Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasProgramAssigned -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasProgramAssigned"/>
+    
+
+
+    <!-- http://linklings#hasRole -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasRole">
+        <rdfs:range rdf:resource="&linklings;Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasRoleInvolved -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasRoleInvolved">
+        <rdfs:range rdf:resource="&linklings;Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasRoom -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasRoom">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="&linklings;Room"/>
+        <rdfs:subPropertyOf rdf:resource="&linklings;hasPlace"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasSession -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasSession">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="&linklings;Session"/>
+        <owl:inverseOf rdf:resource="&linklings;isSession"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasSessionChair -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasSessionChair">
+        <rdfs:range rdf:resource="&linklings;SessionChair"/>
+        <owl:inverseOf rdf:resource="&linklings;hasProgramAssigned"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasSetting -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasSetting">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="&linklings;Settings"/>
+        <owl:inverseOf rdf:resource="&linklings;isSettingFor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasSubmissionStatus -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasSubmissionStatus">
+        <rdfs:range rdf:resource="&linklings;SubmissionStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasSubmissionType -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasSubmissionType">
+        <rdfs:range rdf:resource="&linklings;SubmissionType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#hasTimeInterval -->
+
+    <owl:ObjectProperty rdf:about="&linklings;hasTimeInterval">
+        <rdfs:range rdf:resource="&linklings;TimeInterval"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#includesSubmission -->
+
+    <owl:ObjectProperty rdf:about="&linklings;includesSubmission">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="&linklings;Submission"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isContentTypeOf -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isContentTypeOf">
+        <owl:inverseOf rdf:resource="&linklings;hasContentType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isRegisteredBy -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isRegisteredBy">
+        <owl:inverseOf rdf:resource="&linklings;registers"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isReviewed -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isReviewed"/>
+    
+
+
+    <!-- http://linklings#isRoleInvolvedIn -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isRoleInvolvedIn">
+        <rdfs:domain rdf:resource="&linklings;Role"/>
+        <owl:inverseOf rdf:resource="&linklings;hasRoleInvolved"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isSession -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isSession">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isSetBy -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isSetBy">
+        <owl:inverseOf rdf:resource="&linklings;setsSetting"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isSettingFor -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isSettingFor">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isStatusSetBy -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isStatusSetBy">
+        <rdfs:domain rdf:resource="&linklings;SubmissionStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isSubmissionStatusOf -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isSubmissionStatusOf">
+        <owl:inverseOf rdf:resource="&linklings;hasSubmissionStatus"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#isTypeOf -->
+
+    <owl:ObjectProperty rdf:about="&linklings;isTypeOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#registers -->
+
+    <owl:ObjectProperty rdf:about="&linklings;registers">
+        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#reviews -->
+
+    <owl:ObjectProperty rdf:about="&linklings;reviews">
+        <rdfs:domain rdf:resource="&linklings;Role"/>
+        <owl:inverseOf rdf:resource="&linklings;isReviewed"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#setsSetting -->
+
+    <owl:ObjectProperty rdf:about="&linklings;setsSetting">
+        <rdfs:range rdf:resource="&linklings;Settings"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://linklings#setsStatus -->
+
+    <owl:ObjectProperty rdf:about="&linklings;setsStatus">
+        <rdfs:range rdf:resource="&linklings;SubmissionStatus"/>
+        <owl:inverseOf rdf:resource="&linklings;isStatusSetBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://linklings#hasAddress -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasAddress"/>
+    
+
+
+    <!-- http://linklings#hasCapacity -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasCapacity"/>
+    
+
+
+    <!-- http://linklings#hasConferenceName -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasConferenceName">
+        <rdfs:domain rdf:resource="&linklings;Conference"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://linklings#hasConferenceSeriesName -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasConferenceSeriesName">
+        <rdfs:domain rdf:resource="&linklings;Conference"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://linklings#hasEndDate -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasEndDate"/>
+    
+
+
+    <!-- http://linklings#hasFirstName -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasFirstName">
+        <rdfs:domain rdf:resource="&linklings;Person"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://linklings#hasHeight -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasHeight"/>
+    
+
+
+    <!-- http://linklings#hasLength -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasLength"/>
+    
+
+
+    <!-- http://linklings#hasRoomName -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasRoomName"/>
+    
+
+
+    <!-- http://linklings#hasStartDate -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasStartDate"/>
+    
+
+
+    <!-- http://linklings#hasSureName -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasSureName">
+        <rdfs:domain rdf:resource="&linklings;Person"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://linklings#hasTheme -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasTheme"/>
+    
+
+
+    <!-- http://linklings#hasTitle -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasTitle"/>
+    
+
+
+    <!-- http://linklings#hasWidth -->
+
+    <owl:DatatypeProperty rdf:about="&linklings;hasWidth"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://linklings#Abstract -->
+
+    <owl:Class rdf:about="&linklings;Abstract">
+        <rdfs:subClassOf rdf:resource="&linklings;Content"/>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#AcceptedSubmission -->
+
+    <owl:Class rdf:about="&linklings;AcceptedSubmission">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&linklings;Submission"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasSubmissionStatus"/>
+                        <owl:hasValue rdf:resource="&linklings;Accepted"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#AdminRegistered -->
+
+    <owl:Class rdf:about="&linklings;AdminRegistered">
+        <rdfs:subClassOf rdf:resource="&linklings;RegisteredPerson"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRole"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Role"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isRegisteredBy"/>
+                <owl:onClass rdf:resource="&linklings;Administrator"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Administrator -->
+
+    <owl:Class rdf:about="&linklings;Administrator">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;setsSetting"/>
+                <owl:someValuesFrom rdf:resource="&linklings;SubmissionFeatureSettings"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;setsSetting"/>
+                <owl:someValuesFrom rdf:resource="&linklings;RoleSettings"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;registers"/>
+                <owl:allValuesFrom rdf:resource="&linklings;AdminRegistered"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Applicant -->
+
+    <owl:Class rdf:about="&linklings;Applicant">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isRoleInvolvedIn"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Application"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Application -->
+
+    <owl:Class rdf:about="&linklings;Application">
+        <rdfs:subClassOf rdf:resource="&linklings;SubmissionType"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRoleInvolved"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Applicant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Author -->
+
+    <owl:Class rdf:about="&linklings;Author">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isRoleInvolvedIn"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Paper"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#BasicUser -->
+
+    <owl:Class rdf:about="&linklings;BasicUser">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasPersonAssigned"/>
+                <owl:someValuesFrom rdf:resource="&linklings;SelfRegistered"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Conference -->
+
+    <owl:Class rdf:about="&linklings;Conference">
+        <rdfs:subClassOf rdf:resource="&linklings;Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasConferenceName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasSession"/>
+                <owl:someValuesFrom rdf:resource="&linklings;ConferenceSession"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasTheme"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#ConferenceSession -->
+
+    <owl:Class rdf:about="&linklings;ConferenceSession">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&linklings;Session"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasRoleInvolved"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;SessionChair"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasRoom"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;Room"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasTimeInterval"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;TimeInterval"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;includesSubmission"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;AcceptedSubmission"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;isSession"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;Conference"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasTimeInterval"/>
+                        <owl:allValuesFrom rdf:resource="&linklings;Conference"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;includesSubmission"/>
+                        <owl:allValuesFrom rdf:resource="&linklings;AcceptedSubmission"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;isSession"/>
+                        <owl:allValuesFrom rdf:resource="&linklings;Conference"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasTitle"/>
+                        <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Content -->
+
+    <owl:Class rdf:about="&linklings;Content">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasContentType"/>
+                <owl:allValuesFrom rdf:resource="&linklings;ContentType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasContentType"/>
+                <owl:someValuesFrom rdf:resource="&linklings;ContentType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#ContentType -->
+
+    <owl:Class rdf:about="&linklings;ContentType">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;isContentTypeOf"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;Content"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;isContentTypeOf"/>
+                        <owl:allValuesFrom rdf:resource="&linklings;Content"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Event -->
+
+    <owl:Class rdf:about="&linklings;Event">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasPlace"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Place"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasTimeInterval"/>
+                <owl:someValuesFrom rdf:resource="&linklings;TimeInterval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#FullText -->
+
+    <owl:Class rdf:about="&linklings;FullText">
+        <rdfs:subClassOf rdf:resource="&linklings;Content"/>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Panel -->
+
+    <owl:Class rdf:about="&linklings;Panel">
+        <rdfs:subClassOf rdf:resource="&linklings;SubmissionType"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRoleInvolved"/>
+                <owl:someValuesFrom rdf:resource="&linklings;PanelModerator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRoleInvolved"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Panelist"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#PanelModerator -->
+
+    <owl:Class rdf:about="&linklings;PanelModerator">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isRoleInvolvedIn"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Panel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Panelist -->
+
+    <owl:Class rdf:about="&linklings;Panelist">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isRoleInvolvedIn"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Panel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Paper -->
+
+    <owl:Class rdf:about="&linklings;Paper">
+        <rdfs:subClassOf rdf:resource="&linklings;SubmissionType"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRoleInvolved"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Author"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Person -->
+
+    <owl:Class rdf:about="&linklings;Person">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasSureName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasFirstName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasAddress"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Place -->
+
+    <owl:Class rdf:about="&linklings;Place">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasAddress"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#RegisteredPerson -->
+
+    <owl:Class rdf:about="&linklings;RegisteredPerson">
+        <rdfs:subClassOf rdf:resource="&linklings;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#RejectedSubmission -->
+
+    <owl:Class rdf:about="&linklings;RejectedSubmission">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&linklings;Submission"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasSubmissionStatus"/>
+                        <owl:hasValue rdf:resource="&linklings;Rejected"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Reviewer -->
+
+    <owl:Class rdf:about="&linklings;Reviewer">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&linklings;Role"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;reviews"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;UndecidedSubmission"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;setsStatus"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;SubmissionStatus"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Role -->
+
+    <owl:Class rdf:about="&linklings;Role">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasPersonAssigned"/>
+                <owl:someValuesFrom rdf:resource="&linklings;AdminRegistered"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasSetting"/>
+                <owl:someValuesFrom rdf:resource="&linklings;RoleSettings"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#RoleSettings -->
+
+    <owl:Class rdf:about="&linklings;RoleSettings">
+        <rdfs:subClassOf rdf:resource="&linklings;Settings"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isSettingFor"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Role"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isSetBy"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Administrator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Room -->
+
+    <owl:Class rdf:about="&linklings;Room">
+        <rdfs:subClassOf rdf:resource="&linklings;Place"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasCapacity"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasHeight"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasWidth"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRoomName"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasLength"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#SelfRegistered -->
+
+    <owl:Class rdf:about="&linklings;SelfRegistered">
+        <rdfs:subClassOf rdf:resource="&linklings;RegisteredPerson"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isRegisteredBy"/>
+                <owl:onClass rdf:resource="&linklings;UnregisteredPerson"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasRole"/>
+                <owl:someValuesFrom rdf:resource="&linklings;BasicUser"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Session -->
+
+    <owl:Class rdf:about="&linklings;Session">
+        <rdfs:subClassOf rdf:resource="&linklings;Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#SessionChair -->
+
+    <owl:Class rdf:about="&linklings;SessionChair">
+        <rdfs:subClassOf rdf:resource="&linklings;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasProgramAssigned"/>
+                <owl:someValuesFrom rdf:resource="&linklings;ConferenceSession"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#Settings -->
+
+    <owl:Class rdf:about="&linklings;Settings"/>
+    
+
+
+    <!-- http://linklings#Submission -->
+
+    <owl:Class rdf:about="&linklings;Submission">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasTitle"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasSubmissionType"/>
+                <owl:onClass rdf:resource="&linklings;SubmissionType"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasContent"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Content"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isTypeOf"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Submission"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#SubmissionFeatureSettings -->
+
+    <owl:Class rdf:about="&linklings;SubmissionFeatureSettings">
+        <rdfs:subClassOf rdf:resource="&linklings;Settings"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isSetBy"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Administrator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isSettingFor"/>
+                <owl:someValuesFrom rdf:resource="&linklings;SubmissionType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#SubmissionStatus -->
+
+    <owl:Class rdf:about="&linklings;SubmissionStatus">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&linklings;Undecided"/>
+                    <rdf:Description rdf:about="&linklings;Rejected"/>
+                    <rdf:Description rdf:about="&linklings;Accepted"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isSubmissionStatusOf"/>
+                <owl:allValuesFrom rdf:resource="&linklings;Submission"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isSubmissionStatusOf"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Submission"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;isStatusSetBy"/>
+                <owl:someValuesFrom rdf:resource="&linklings;Reviewer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#SubmissionType -->
+
+    <owl:Class rdf:about="&linklings;SubmissionType">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasSetting"/>
+                <owl:someValuesFrom rdf:resource="&linklings;SubmissionFeatureSettings"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#TimeInterval -->
+
+    <owl:Class rdf:about="&linklings;TimeInterval">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasEndDate"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;hasStartDate"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#UndecidedSubmission -->
+
+    <owl:Class rdf:about="&linklings;UndecidedSubmission">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&linklings;Submission"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;isReviewed"/>
+                        <owl:someValuesFrom rdf:resource="&linklings;Reviewer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;isReviewed"/>
+                        <owl:allValuesFrom rdf:resource="&linklings;Reviewer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&linklings;hasSubmissionStatus"/>
+                        <owl:hasValue rdf:resource="&linklings;Undecided"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://linklings#UnregisteredPerson -->
+
+    <owl:Class rdf:about="&linklings;UnregisteredPerson">
+        <rdfs:subClassOf rdf:resource="&linklings;Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&linklings;registers"/>
+                <owl:onClass rdf:resource="&linklings;SelfRegistered"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://linklings#Accepted -->
+
+    <owl:NamedIndividual rdf:about="&linklings;Accepted">
+        <rdf:type rdf:resource="&linklings;SubmissionStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://linklings#Rejected -->
+
+    <owl:NamedIndividual rdf:about="&linklings;Rejected">
+        <rdf:type rdf:resource="&linklings;SubmissionStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://linklings#Undecided -->
+
+    <owl:NamedIndividual rdf:about="&linklings;Undecided">
+        <rdf:type rdf:resource="&linklings;SubmissionStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://linklings#file -->
+
+    <owl:NamedIndividual rdf:about="&linklings;file">
+        <rdf:type rdf:resource="&linklings;ContentType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://linklings#text -->
+
+    <owl:NamedIndividual rdf:about="&linklings;text">
+        <rdf:type rdf:resource="&linklings;ContentType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&linklings;AcceptedSubmission"/>
+            <rdf:Description rdf:about="&linklings;RejectedSubmission"/>
+            <rdf:Description rdf:about="&linklings;UndecidedSubmission"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
