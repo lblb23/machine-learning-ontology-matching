@@ -1,4 +1,4 @@
-# Ontology Matching with Machine Learning
+# Ontology Matching with Machine Learning [Obsolete]
 Applying of Machine Learning Techniques to Combine String-based, Language-based and Structure-based Similarity Measures for Ontology Matching [[Paper]](http://ceur-ws.org/Vol-2523/paper14.pdf)
 
 ## Getting Started
